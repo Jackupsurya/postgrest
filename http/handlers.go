@@ -57,7 +57,7 @@ func (t *ToDoService) CreateTask(g *gin.Context) {
 	h.GenerateSuccessResponse(g, http.StatusOK, nil)
 }
 
-func (t *ToDoService) UpdateTask(g *gin.Context) {
+func (t *ToDoService) UpdateTaskById(g *gin.Context) {
 	ctx := g.Request.Context()
 	id := g.Param("id")
 	var task models.Todo
@@ -65,6 +65,17 @@ func (t *ToDoService) UpdateTask(g *gin.Context) {
 		h.GenerateErrorResponse(g, http.StatusBadRequest, err)
 	}
 	err := t.Service.UpdateTaskByIdService(ctx, id, task)
+	if err != nil {
+		h.GenerateErrorResponse(g, http.StatusBadRequest, err)
+		return
+	}
+	h.GenerateSuccessResponse(g, http.StatusOK, nil)
+}
+
+func (t *ToDoService) DeleteTaskById(g *gin.Context) {
+	ctx := g.Request.Context()
+	id := g.Param("id")
+	err := t.Service.DeleteTaskByIdService(ctx, id)
 	if err != nil {
 		h.GenerateErrorResponse(g, http.StatusBadRequest, err)
 		return
