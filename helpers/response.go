@@ -8,13 +8,15 @@ import (
 
 func GenerateSuccessResponse(g *gin.Context, StatusCode int, data interface{}) {
 	g.JSON(StatusCode, models.Response{
-		Data:  data,
-		Error: nil,
+		Success: true,
+		Data:    data,
+		Error:   nil,
 	})
 }
 
 func GenerateErrorResponse(g *gin.Context, StatusCode int, err error) {
 	g.JSON(StatusCode, models.Response{
-		Error: err,
+		Success: false,
+		Error:   err,
 	})
 }

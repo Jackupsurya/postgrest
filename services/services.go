@@ -32,10 +32,18 @@ func (t *ToDoService) GetTaskByIdService(ctx context.Context, id string) (resp [
 	return resp, nil
 }
 
-func (t *ToDoService) CreateTaskService(ctx context.Context, input models.Todo) (resp models.Todo, err error) {
-	resp, err = t.Repository.CreateTask(ctx, input)
+func (t *ToDoService) CreateTaskService(ctx context.Context, input models.Todo) (err error) {
+	err = t.Repository.CreateTask(ctx, input)
 	if err != nil {
-		return resp, err
+		return err
 	}
-	return resp, nil
+	return nil
+}
+
+func (t *ToDoService) UpdateTaskByIdService(ctx context.Context, id string, input models.Todo) (err error) {
+	err = t.Repository.UpdateTask(ctx, input, id)
+	if err != nil {
+		return err
+	}
+	return nil
 }
