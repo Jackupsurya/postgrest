@@ -1,9 +1,8 @@
 {
     "base_url_postgrest":"http://localhost:3000/todos",
 
-    "get_all_tasks_endpoint":"/tasks",
-    "get_task_by_id_endpoint":"/tasks/:id",
-    "create_task_endpoint":"/tasks",
+    "tasks_endpoint":"/tasks",
+    "task_by_id_endpoint":"/tasks/:id",
 
     "content_type":"Content-Type",
     "application_json":"application/json",

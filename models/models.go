@@ -7,8 +7,9 @@ type Todo struct {
 }
 
 type Response struct {
-	Data  interface{}
-	Error error
+	Success bool
+	Data    interface{}
+	Error   error
 }
 
 type PostgrestErrorResponse struct {
