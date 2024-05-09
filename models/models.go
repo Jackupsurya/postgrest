@@ -2,8 +2,8 @@ package models
 
 type Todo struct {
 	Id   int    `json:"id,omitempty"`
-	Task string `json:"task"`
-	Done bool   `json:"done"`
+	Task string `json:"task,omitempty"`
+	Done bool   `json:"done,omitempty"`
 }
 
 type Response struct {
