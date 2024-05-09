@@ -47,3 +47,11 @@ func (t *ToDoService) UpdateTaskByIdService(ctx context.Context, id string, inpu
 	}
 	return nil
 }
+
+func (t *ToDoService) DeleteTaskByIdService(ctx context.Context, id string) (err error) {
+	err = t.Repository.DeleteTask(ctx, id)
+	if err != nil {
+		return err
+	}
+	return nil
+}

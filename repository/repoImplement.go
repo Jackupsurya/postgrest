@@ -65,6 +65,16 @@ func (t *ToDoRepositoryImp) UpdateTask(ctx context.Context, task models.Todo, id
 	return nil
 }
 
+func (t *ToDoRepositoryImp) DeleteTask(ctx context.Context, id string) (err error) {
+	url := fmt.Sprintf("%s?id=eq.%s", viper.GetString(c.PostgrestBaseURL), id)
+	response, err := makeRequestToPostgrest(http.MethodDelete, url, nil)
+	err = handleResponse(response, err, nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func makeRequestToPostgrest(method string, url string, body io.Reader) (*http.Response, error) {
 	if method == http.MethodGet || method == http.MethodDelete {
 		request, err := http.NewRequest(method, url, nil)
