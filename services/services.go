@@ -40,7 +40,7 @@ func (t *ToDoService) CreateTaskService(ctx context.Context, input models.Todo) 
 	return nil
 }
 
-func (t *ToDoService) UpdateTaskByIdService(ctx context.Context, id string, input models.Todo) (err error) {
+func (t *ToDoService) UpdateTaskByIdService(ctx context.Context, id string, input models.TodoUpdate) (err error) {
 	err = t.Repository.UpdateTask(ctx, input, id)
 	if err != nil {
 		return err

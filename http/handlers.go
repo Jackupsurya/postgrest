@@ -60,7 +60,7 @@ func (t *ToDoService) CreateTask(g *gin.Context) {
 func (t *ToDoService) UpdateTaskById(g *gin.Context) {
 	ctx := g.Request.Context()
 	id := g.Param("id")
-	var task models.Todo
+	var task models.TodoUpdate
 	if err := g.Bind(&task); err != nil {
 		h.GenerateErrorResponse(g, http.StatusBadRequest, err)
 	}
