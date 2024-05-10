@@ -17,6 +17,6 @@ func GenerateSuccessResponse(g *gin.Context, StatusCode int, data interface{}) {
 func GenerateErrorResponse(g *gin.Context, StatusCode int, err error) {
 	g.JSON(StatusCode, models.Response{
 		Success: false,
-		Error:   err,
+		Error:   err.Error(),
 	})
 }

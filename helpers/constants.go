@@ -12,7 +12,6 @@ const (
 	DeleteTaskEndpoint  = "task_by_id_endpoint"
 
 	// Request headers
-
 	ContentType     = "content_type"
 	ApplicationJSON = "application_json"
 	Authorization   = "authorization"

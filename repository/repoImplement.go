@@ -51,7 +51,7 @@ func (t *ToDoRepositoryImp) CreateTask(ctx context.Context, task models.Todo) (e
 	return nil
 }
 
-func (t *ToDoRepositoryImp) UpdateTask(ctx context.Context, task models.Todo, id string) (err error) {
+func (t *ToDoRepositoryImp) UpdateTask(ctx context.Context, task models.TodoUpdate, id string) (err error) {
 	newTask, err := json.Marshal(task)
 	if err != nil {
 		return err
