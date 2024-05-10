@@ -1,5 +1,10 @@
 package models
 
+type TodoUpdate struct {
+	Id   int    `json:"id,omitempty"`
+	Task string `json:"task,omitempty"`
+	Done bool   `json:"done,omitempty"`
+}
 type Todo struct {
 	Id   int    `json:"id,omitempty"`
 	Task string `json:"task"`
@@ -7,8 +12,9 @@ type Todo struct {
 }
 
 type Response struct {
-	Data  interface{}
-	Error error
+	Success bool
+	Data    interface{}
+	Error   interface{}
 }
 
 type PostgrestErrorResponse struct {

@@ -30,8 +30,6 @@ func (t *ToDoRepositoryImp) GetAllTasks(ctx context.Context) (resp []models.Todo
 
 func (t *ToDoRepositoryImp) GetTaskById(ctx context.Context, id string) (resp []models.Todo, err error) {
 	url := fmt.Sprintf("%s?id=eq.%s", viper.GetString(c.PostgrestBaseURL), id)
-	fmt.Println("url :", url)
-
 	response, err := makeRequestToPostgrest(http.MethodGet, url, nil)
 	err = handleResponse(response, err, &resp)
 	if err != nil {
@@ -40,18 +38,41 @@ func (t *ToDoRepositoryImp) GetTaskById(ctx context.Context, id string) (resp []
 	return resp, nil
 }
 
-func (t *ToDoRepositoryImp) CreateTask(ctx context.Context, task models.Todo) (resp models.Todo, err error) {
+func (t *ToDoRepositoryImp) CreateTask(ctx context.Context, task models.Todo) (err error) {
 	newTask, err := json.Marshal(task)
 	if err != nil {
-		return resp, err
+		return err
 	}
 	response, err := makeRequestToPostgrest(http.MethodPost, viper.GetString(c.PostgrestBaseURL), bytes.NewReader(newTask))
 	err = handleResponse(response, err, nil)
 	if err != nil {
-		return resp, err
+		return err
 	}
-	resp = task
-	return resp, nil
+	return nil
+}
+
+func (t *ToDoRepositoryImp) UpdateTask(ctx context.Context, task models.TodoUpdate, id string) (err error) {
+	newTask, err := json.Marshal(task)
+	if err != nil {
+		return err
+	}
+	url := fmt.Sprintf("%s?id=eq.%s", viper.GetString(c.PostgrestBaseURL), id)
+	response, err := makeRequestToPostgrest(http.MethodPatch, url, bytes.NewReader(newTask))
+	err = handleResponse(response, err, nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (t *ToDoRepositoryImp) DeleteTask(ctx context.Context, id string) (err error) {
+	url := fmt.Sprintf("%s?id=eq.%s", viper.GetString(c.PostgrestBaseURL), id)
+	response, err := makeRequestToPostgrest(http.MethodDelete, url, nil)
+	err = handleResponse(response, err, nil)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func makeRequestToPostgrest(method string, url string, body io.Reader) (*http.Response, error) {

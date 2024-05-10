@@ -12,4 +12,6 @@ func Router(app *gin.Engine) {
 	app.GET(viper.GetString(c.GetAllTasksEndpoint), handler.GetAllTasks)
 	app.GET(viper.GetString(c.GetTaskByIdEndpoint), handler.GetTaskById)
 	app.POST(viper.GetString(c.CreateTaskEndpoint), handler.CreateTask)
+	app.PATCH(viper.GetString(c.UpdateTaskEndpoint), handler.UpdateTaskById)
+	app.DELETE(viper.GetString(c.DeleteTaskEndpoint), handler.DeleteTaskById)
 }

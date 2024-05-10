@@ -5,12 +5,13 @@ const (
 	PostgrestBaseURL = "base_url_postgrest"
 
 	// API endpoints
-	GetAllTasksEndpoint = "get_all_tasks_endpoint"
-	GetTaskByIdEndpoint = "get_task_by_id_endpoint"
-	CreateTaskEndpoint  = "create_task_endpoint"
+	GetAllTasksEndpoint = "tasks_endpoint"
+	GetTaskByIdEndpoint = "task_by_id_endpoint"
+	CreateTaskEndpoint  = "tasks_endpoint"
+	UpdateTaskEndpoint  = "task_by_id_endpoint"
+	DeleteTaskEndpoint  = "task_by_id_endpoint"
 
 	// Request headers
-
 	ContentType     = "content_type"
 	ApplicationJSON = "application_json"
 	Authorization   = "authorization"
